@@ -1,5 +1,6 @@
 object dtmServerRestDW: TdtmServerRestDW
   OldCreateOrder = False
+  Encoding = esUtf8
   Height = 399
   Width = 369
   object DWEvents: TDWServerEvents

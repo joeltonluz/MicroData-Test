@@ -101,21 +101,18 @@
         <DelphiCompile Include="$(MainSource)">
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
-        <DCCReference Include="untPrincipal.pas">
-            <Form>Form1</Form>
-            <FormType>dfm</FormType>
+        <DCCReference Include="PrincipalF.pas">
+            <Form>frmPrincipal</Form>
         </DCCReference>
-        <DCCReference Include="dtmPrincipal.pas">
-            <Form>PrincipalM</Form>
-            <FormType>dfm</FormType>
+        <DCCReference Include="PrincipalM.pas">
+            <Form>dtmPrincipal</Form>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
-        <DCCReference Include="untServerRestDW.pas">
+        <DCCReference Include="ServerRestDWM.pas">
             <Form>dtmServerRestDW</Form>
-            <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
-        <DCCReference Include="untCliente.pas"/>
+        <DCCReference Include="ClienteC.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

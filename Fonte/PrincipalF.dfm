@@ -1,4 +1,4 @@
-object Form1: TForm1
+object frmPrincipal: TfrmPrincipal
   Left = 0
   Top = 0
   Caption = 'Gerenciamento de Clientes'
@@ -34,7 +34,7 @@ object Form1: TForm1
         Width = 649
         Height = 284
         Align = alClient
-        DataSource = PrincipalM.DtsCliente
+        DataSource = dtmPrincipal.DtsCliente
         Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
         TabOrder = 0
         TitleFont.Charset = DEFAULT_CHARSET
@@ -166,7 +166,7 @@ object Form1: TForm1
         Height = 21
         CharCase = ecUpperCase
         DataField = 'ID'
-        DataSource = PrincipalM.DtsCliente
+        DataSource = dtmPrincipal.DtsCliente
         ReadOnly = True
         TabOrder = 0
       end
@@ -178,7 +178,7 @@ object Form1: TForm1
         Anchors = [akLeft, akTop, akRight]
         CharCase = ecUpperCase
         DataField = 'NOME'
-        DataSource = PrincipalM.DtsCliente
+        DataSource = dtmPrincipal.DtsCliente
         TabOrder = 1
       end
       object EdtCep: TDBEdit
@@ -188,7 +188,7 @@ object Form1: TForm1
         Height = 21
         CharCase = ecUpperCase
         DataField = 'CEP'
-        DataSource = PrincipalM.DtsCliente
+        DataSource = dtmPrincipal.DtsCliente
         TabOrder = 2
         OnExit = EdtCepExit
       end
@@ -199,7 +199,7 @@ object Form1: TForm1
         Height = 21
         CharCase = ecUpperCase
         DataField = 'CIDADE'
-        DataSource = PrincipalM.DtsCliente
+        DataSource = dtmPrincipal.DtsCliente
         TabOrder = 4
       end
       object DBEdit5: TDBEdit
@@ -210,7 +210,7 @@ object Form1: TForm1
         Anchors = [akLeft, akTop, akRight]
         CharCase = ecUpperCase
         DataField = 'LOGRADOURO'
-        DataSource = PrincipalM.DtsCliente
+        DataSource = dtmPrincipal.DtsCliente
         TabOrder = 5
       end
       object EdtNumero: TDBEdit
@@ -220,7 +220,7 @@ object Form1: TForm1
         Height = 21
         CharCase = ecUpperCase
         DataField = 'NUMERO'
-        DataSource = PrincipalM.DtsCliente
+        DataSource = dtmPrincipal.DtsCliente
         TabOrder = 6
       end
       object DBEdit7: TDBEdit
@@ -231,7 +231,7 @@ object Form1: TForm1
         Anchors = [akLeft, akTop, akRight]
         CharCase = ecUpperCase
         DataField = 'COMPLEMENTO'
-        DataSource = PrincipalM.DtsCliente
+        DataSource = dtmPrincipal.DtsCliente
         TabOrder = 9
       end
       object DBEdit8: TDBEdit
@@ -241,7 +241,7 @@ object Form1: TForm1
         Height = 21
         CharCase = ecUpperCase
         DataField = 'IBGE_UF'
-        DataSource = PrincipalM.DtsCliente
+        DataSource = dtmPrincipal.DtsCliente
         TabOrder = 7
       end
       object DBEdit9: TDBEdit
@@ -251,7 +251,7 @@ object Form1: TForm1
         Height = 21
         CharCase = ecUpperCase
         DataField = 'IBGE_CIDADE'
-        DataSource = PrincipalM.DtsCliente
+        DataSource = dtmPrincipal.DtsCliente
         TabOrder = 8
       end
       object GroupBox1: TGroupBox
@@ -268,7 +268,7 @@ object Form1: TForm1
           Width = 628
           Height = 96
           Align = alClient
-          DataSource = PrincipalM.DtsContato
+          DataSource = dtmPrincipal.DtsContato
           TabOrder = 0
           TitleFont.Charset = DEFAULT_CHARSET
           TitleFont.Color = clWindowText
@@ -332,7 +332,7 @@ object Form1: TForm1
             Margins.Top = 4
             Margins.Right = 0
             Margins.Bottom = 4
-            DataSource = PrincipalM.DtsContato
+            DataSource = dtmPrincipal.DtsContato
             Align = alLeft
             TabOrder = 0
           end
@@ -344,7 +344,7 @@ object Form1: TForm1
         Width = 42
         Height = 21
         DataField = 'SIGLA_UF'
-        DataSource = PrincipalM.DtsCliente
+        DataSource = dtmPrincipal.DtsCliente
         Items.Strings = (
           'AC'
           'AL'
@@ -382,7 +382,7 @@ object Form1: TForm1
         Height = 21
         CharCase = ecUpperCase
         DataField = 'SIGLA_UF'
-        DataSource = PrincipalM.DtsCliente
+        DataSource = dtmPrincipal.DtsCliente
         TabOrder = 11
       end
     end
@@ -404,7 +404,7 @@ object Form1: TForm1
       Margins.Top = 4
       Margins.Right = 0
       Margins.Bottom = 4
-      DataSource = PrincipalM.DtsCliente
+      DataSource = dtmPrincipal.DtsCliente
       Align = alLeft
       ParentShowHint = False
       ShowHint = True
@@ -418,7 +418,6 @@ object Form1: TForm1
     Height = 59
     Align = alBottom
     TabOrder = 2
-    ExplicitTop = 386
     object Label10: TLabel
       Left = 16
       Top = 6
@@ -482,7 +481,7 @@ object Form1: TForm1
     TokenOptions.ServerRequest = 'RESTDWServer01'
     TokenOptions.TokenHash = 'RDWTS_HASH'
     TokenOptions.LifeCycle = 30
-    ServerParams.HasAuthentication = True
+    ServerParams.HasAuthentication = False
     ServerParams.UserName = 'admin'
     ServerParams.Password = 'admin'
     SSLMethod = sslvSSLv2

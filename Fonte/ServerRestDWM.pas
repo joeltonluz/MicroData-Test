@@ -1,4 +1,4 @@
-unit untServerRestDW;
+unit ServerRestDWM;
 
 interface
 
@@ -24,7 +24,7 @@ implementation
 
 {%CLASSGROUP 'Vcl.Controls.TControl'}
 
-uses dtmPrincipal, untCliente;
+uses PrincipalM, ClienteC;
 
 {$R *.dfm}
 
@@ -39,7 +39,7 @@ begin
 
     Json := TJSONObject.Create;
 
-    Cliente := TCliente.Create(PrincipalM.connPrincipal);
+    Cliente := TCliente.Create(dtmPrincipal.connPrincipal);
     Cliente.Nome := PNome;
 
     if not Cliente.GetCliente(PErro) then

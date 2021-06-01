@@ -2,12 +2,12 @@ program CRUD;
 
 uses
   Vcl.Forms,
-  untPrincipal in 'untPrincipal.pas' {Form1},
-  dtmPrincipal in 'dtmPrincipal.pas' {PrincipalM: TDataModule},
   Vcl.Themes,
   Vcl.Styles,
-  untServerRestDW in 'untServerRestDW.pas' {dtmServerRestDW: TDataModule},
-  untCliente in 'untCliente.pas';
+  PrincipalF in 'PrincipalF.pas' {frmPrincipal},
+  PrincipalM in 'PrincipalM.pas' {dtmPrincipal: TDataModule},
+  ServerRestDWM in 'ServerRestDWM.pas' {dtmServerRestDW: TDataModule},
+  ClienteC in 'ClienteC.pas';
 
 {$R *.res}
 
@@ -15,8 +15,8 @@ begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
   TStyleManager.TrySetStyle('Cyan Dusk');
-  Application.CreateForm(TForm1, Form1);
-  Application.CreateForm(TPrincipalM, PrincipalM);
+  Application.CreateForm(TfrmPrincipal, frmPrincipal);
+  Application.CreateForm(TdtmPrincipal, dtmPrincipal);
   Application.CreateForm(TdtmServerRestDW, dtmServerRestDW);
   Application.Run;
 end.

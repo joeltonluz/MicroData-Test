@@ -1,4 +1,4 @@
-unit dtmPrincipal;
+unit PrincipalM;
 
 interface
 
@@ -12,7 +12,7 @@ uses
   uDWAbout, uRESTDWBase;
 
 type
-  TPrincipalM = class(TDataModule)
+  TdtmPrincipal = class(TDataModule)
     connPrincipal: TZConnection;
     QryCliente: TZQuery;
     DtsCliente: TDataSource;
@@ -60,7 +60,7 @@ type
   end;
 
 var
-  PrincipalM: TPrincipalM;
+  dtmPrincipal: TdtmPrincipal;
 
 implementation
 
@@ -71,7 +71,7 @@ uses
 
 {$R *.dfm}
 
-procedure TPrincipalM.DataModuleCreate(Sender: TObject);
+procedure TdtmPrincipal.DataModuleCreate(Sender: TObject);
 var
   ArquivoINI: TIniFile;
 begin
@@ -94,7 +94,7 @@ begin
   end;
 end;
 
-function TPrincipalM.GetCepJson(Cep: String): String;
+function TdtmPrincipal.GetCepJson(Cep: String): String;
 const
   Url = 'https://api.postmon.com.br/v1/cep/';
 var
@@ -121,13 +121,13 @@ begin
   end;
 end;
 
-procedure TPrincipalM.QryClienteAfterPost(DataSet: TDataSet);
+procedure TdtmPrincipal.QryClienteAfterPost(DataSet: TDataSet);
 begin
   QryCliente.Close;
   QryCliente.Open;
 end;
 
-procedure TPrincipalM.QryClienteBeforeDelete(DataSet: TDataSet);
+procedure TdtmPrincipal.QryClienteBeforeDelete(DataSet: TDataSet);
 var
   QryDelContato: TZQuery;
 begin
@@ -141,19 +141,19 @@ begin
   end;
 end;
 
-procedure TPrincipalM.QryContatoAfterPost(DataSet: TDataSet);
+procedure TdtmPrincipal.QryContatoAfterPost(DataSet: TDataSet);
 begin
   QryCliente.Close;
   QryCliente.Open;
 end;
 
-procedure TPrincipalM.QryContatoBeforeInsert(DataSet: TDataSet);
+procedure TdtmPrincipal.QryContatoBeforeInsert(DataSet: TDataSet);
 begin
   if not QryCliente.FieldByName('ID').AsInteger=0 then
     Exit;
 end;
 
-procedure TPrincipalM.QryContatoBeforePost(DataSet: TDataSet);
+procedure TdtmPrincipal.QryContatoBeforePost(DataSet: TDataSet);
 begin
   QryContato.FieldByName('id_cliente').AsInteger := QryCliente.FieldByName('ID').AsInteger;
 end;

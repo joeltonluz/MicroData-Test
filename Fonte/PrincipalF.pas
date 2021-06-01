@@ -1,4 +1,4 @@
-unit untPrincipal;
+unit PrincipalF;
 
 interface
 
@@ -10,7 +10,7 @@ uses
   uDWAbout, uRESTDWBase;
 
 type
-  TForm1 = class(TForm)
+  TfrmPrincipal = class(TForm)
     PgcCliente: TPageControl;
     TshTabela: TTabSheet;
     TshInformacao: TTabSheet;
@@ -62,15 +62,15 @@ type
   end;
 
 var
-  Form1: TForm1;
+  frmPrincipal: TfrmPrincipal;
 
 implementation
 
 {$R *.dfm}
 
-uses dtmPrincipal, untServerRestDW;
+uses PrincipalM, ServerRestDWM;
 
-function TForm1.CepValido: boolean;
+function TfrmPrincipal.CepValido: boolean;
 var
   Cep: String;
 begin
@@ -88,22 +88,22 @@ begin
     end;
 end;
 
-procedure TForm1.DBGrid1DblClick(Sender: TObject);
+procedure TfrmPrincipal.DBGrid1DblClick(Sender: TObject);
 begin
-  if not PrincipalM.QryCliente.IsEmpty then
+  if not dtmPrincipal.QryCliente.IsEmpty then
     PgcCliente.ActivePage := TshInformacao;
 end;
 
-procedure TForm1.EdtCepExit(Sender: TObject);
+procedure TfrmPrincipal.EdtCepExit(Sender: TObject);
 var
   Result: String;
   teste: TJSONObject;
 begin
-  if (PrincipalM.QryCliente.State in [dsInsert,dsEdit]) and
+  if (dtmPrincipal.QryCliente.State in [dsInsert,dsEdit]) and
      (Application.MessageBox('Deseja buscar informações online do CEP?','Questão',MB_ICONQUESTION+MB_YESNO)=mrYes) then
   begin
     if CepValido then
-      Result:=PrincipalM.GetCepJson(EdtCep.Text);
+      Result:=dtmPrincipal.GetCepJson(EdtCep.Text);
     if Result<>'' then
     begin
       EdtCep.SetFocus;
@@ -114,9 +114,9 @@ begin
   end;
 end;
 
-procedure TForm1.FormActivate(Sender: TObject);
+procedure TfrmPrincipal.FormActivate(Sender: TObject);
 begin
-  if not PrincipalM.Connected then
+  if not dtmPrincipal.Connected then
   begin
     Application.MessageBox(Pchar('Não foi possível se conectar a base. Verifique o Data Modulo'),'Atenção',MB_ICONERROR);
     Application.Terminate;
@@ -124,27 +124,27 @@ begin
 
   PgcCliente.ActivePageIndex := 0;
 
-  PrincipalM.QryCliente.Open;
-  PrincipalM.QryContato.Open;
+  dtmPrincipal.QryCliente.Open;
+  dtmPrincipal.QryContato.Open;
 end;
 
-procedure TForm1.FormCreate(Sender: TObject);
+procedure TfrmPrincipal.FormCreate(Sender: TObject);
 begin
   RESTServicePooler1.ServerMethodClass := TdtmServerRestDW;
 end;
 
-procedure TForm1.PgcClienteChanging(Sender: TObject; var AllowChange: Boolean);
+procedure TfrmPrincipal.PgcClienteChanging(Sender: TObject; var AllowChange: Boolean);
 begin
   if PgcCliente.ActivePage=TshInformacao then
-    if (PrincipalM.QryCliente.State in [dsInsert,dsEdit]) or
-       (PrincipalM.QryContato.State in [dsInsert,dsEdit]) then
+    if (dtmPrincipal.QryCliente.State in [dsInsert,dsEdit]) or
+       (dtmPrincipal.QryContato.State in [dsInsert,dsEdit]) then
     begin
        Application.MessageBox(PChar('Finalize As Alterações'),'Atenção',MB_ICONQUESTION);
        AllowChange := False;
     end;
 end;
 
-procedure TForm1.ToggleSwitchClick(Sender: TObject);
+procedure TfrmPrincipal.ToggleSwitchClick(Sender: TObject);
 begin
   RESTServicePooler1.Active := (ToggleSwitch.State=tssOn);
   label11.Visible := (ToggleSwitch.State=tssOn);
